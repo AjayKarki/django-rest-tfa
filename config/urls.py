@@ -36,7 +36,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("users.urls")),
+    path("users/", include("users.urls")),
     path("project-swagger/", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
     path("project-redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
     path("project-docs/",include_docs_urls(title="My Project", permission_classes=[permissions.IsAdminUser]),),

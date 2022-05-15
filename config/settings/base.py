@@ -61,6 +61,7 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = [
     "rest_framework",
+    'rest_framework.authtoken',
     "drf_yasg",
 ]
 
@@ -93,13 +94,13 @@ REST_FRAMEWORK = {
         "rest_framework.filters.OrderingFilter",
     ),
     "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.AllowAny",),
     "PAGE_SIZE": 50,
     "PAGE_SIZE_PARAM": "page_size",  # overrides, using `?page_size=xxx`.
     "MAX_PAGE_SIZE": 1000,  # Maximum limit for `?page_size=xxx`.
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.SessionAuthentication",
-
+        "rest_framework.authentication.TokenAuthentication",
     ),
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
     "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.AcceptHeaderVersioning",

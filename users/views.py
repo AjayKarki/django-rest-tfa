@@ -57,7 +57,7 @@ class EnableTwoFactorAuthenticationAPIView(CustomAPIMixin, APIView):
 
     def post(self, request):
         user = request.user
-        url = pyotp.TOTP(user.two_fa_identifier).provisioning_uri(user.email, issuer_name="Sparrow SMS")
+        url = pyotp.TOTP(user.two_fa_identifier).provisioning_uri(user.email, issuer_name="My Project")
         if user.enable_two_factor_authentication:
             return self.api_error_response({"message": "Two factor authentication is already enabled.", "url": url}, status.HTTP_200_OK)
         user.enable_two_factor_authentication = True
