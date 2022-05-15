@@ -1,0 +1,36 @@
+from .base import *  # noqa
+
+# https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = ["*"]
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+# django-extensions
+# ------------------------------------------------------------------------------
+# https://django-extensions.readthedocs.io/en/latest/installation_instructions.html#configuration
+INSTALLED_APPS += ["django_extensions", "debug_toolbar"]  # noqa F405
+
+MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"] + MIDDLEWARE  # noqa F405
+
+DEBUG_TOOLBAR_CONFIG = {"SHOW_TOOLBAR_CALLBACK": lambda request: not request.is_ajax()}
+
+# Celery
+# ------------------------------------------------------------------------------
+
+# http://docs.celeryproject.org/en/latest/userguide/configuration.html#task-eager-propagates
+CELERY_TASK_EAGER_PROPAGATES = True
+
+STATIC_URL = "/static/"
+
+# STATIC_URL = '/static/'
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"
+
+STATIC_ROOT = BASE_DIR / "static"
+
+LOGGING = None
