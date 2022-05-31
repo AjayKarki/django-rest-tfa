@@ -12,7 +12,7 @@ class UserAdmin(UserAdmin):
     ordering = ("-id",)
 
     fieldsets = (
-        (None, {"fields": ("email" , "password")}),
+        (None, {"fields": ("email" , "password", "enable_two_factor_authentication")}),
         (_("Personal info"), {"fields": ("name",)}),
         (
             _("Permissions"),
